@@ -16,3 +16,14 @@ Each script in the commands/ directory can be used as a custom command. To use a
 
 ```
 bash ./commands/your_directory/sample_command.sh
+```
+
+## 🏗️ Contributing
+
+We welcome contributions! Please check the [`CONTRIBUTING.md`](https://github.com/Walchand-Linux-Users-Group/Docker-Environment-Repository/blob/main/CONTRIBUTING.md) file for guidelines on how to create and submit Dockerfiles.
+
+---
+
+<div align="center"><h3>Community | Knowledge | Share</h3></div>
+
+---
