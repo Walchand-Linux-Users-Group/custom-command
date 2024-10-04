@@ -9,7 +9,7 @@ Thank you for your interest in contributing to this project! Here’s a guide on
    
 2. **Clone the Fork**: Clone your fork to your local machine.
 
-3. **Create your own directory**: Create a directory with <command_name> 
+3. **Create your own directory**: Create a directory with `<command_name>`
 
 4. **Navigate to that directory**: Create a pair of files named as `<command_name>.sh` & `README.md`.
 
