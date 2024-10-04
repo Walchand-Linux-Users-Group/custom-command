@@ -20,7 +20,7 @@ bash ./commands/your_directory/sample_command.sh
 
 ## 🏗️ Contributing
 
-We welcome contributions! Please check the [`CONTRIBUTING.md`](https://github.com/Walchand-Linux-Users-Group/Docker-Environment-Repository/blob/main/CONTRIBUTING.md) file for guidelines on how to create and submit Dockerfiles.
+We welcome contributions! Please check the [`CONTRIBUTING.md`](https://github.com/Walchand-Linux-Users-Group/custom-command/blob/master/CONTRIBUTING.md) file for guidelines on how to create and submit Dockerfiles.
 
 ---
 
