@@ -8,6 +8,6 @@ This command stops all running Docker containers, removes all containers and the
 dock-cleanup
 ```
 ## Features
-Stops all running Docker containers.
-Removes all containers (even stopped ones).
-Force removes all Docker images.
+Stops all running Docker containers.<br/>
+Removes all containers (even stopped ones).<br/>
+Force removes all Docker images.<br/>
