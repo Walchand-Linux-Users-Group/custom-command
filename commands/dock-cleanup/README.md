@@ -6,7 +6,7 @@ This command stops all running Docker containers, removes all containers and the
 ## Syntax
 ```bash
 dock-cleanup
-
+```
 ##Features
 Stops all running Docker containers.
 Removes all containers (even stopped ones).
