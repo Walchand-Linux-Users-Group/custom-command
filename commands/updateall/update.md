@@ -7,6 +7,8 @@ This script detects the package manager used by your Linux system and performs a
 ## Syntax
 
 ```bash
+chmod +x updateall.sh
+
 ./Updateall.sh
 ```
 
