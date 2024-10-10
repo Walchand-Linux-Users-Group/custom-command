@@ -1,5 +1,5 @@
 
-!/bin/bash
+#!/bin/bash
 if [ -z "$1" ]; then
     echo "Please provide a commit message."
     exit 1
