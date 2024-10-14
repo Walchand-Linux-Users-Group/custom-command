@@ -1,5 +1,8 @@
 #!/bin/bash
-
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run with sudo"
+    exit 1
+fi
 if ! ping -q -c 1 -W 1 google.com &>/dev/null; then
   echo "No internet connection. Exiting."
   exit 1
