@@ -8,7 +8,7 @@ if ! ping -q -c 1 -W 1 google.com &>/dev/null; then
   exit 1
 fi
 
-sudo apt-get install shc -y
+sudo apt-get install shc -y > /dev/null
 
 cat <<EOF > .temp.sh
 #!/bin/bash
@@ -55,7 +55,7 @@ echo "Cleaned"
 EOF
 
 chmod +x .temp.sh
-shc -vrf .temp.sh -o /usr/bin/cleanop
+shc -vrf .temp.sh -o /usr/bin/cleanop 2>1 /dev/null
 rm .temp.sh .temp.sh.x.c
 
 sudo apt-get purge shc -y > /dev/null
