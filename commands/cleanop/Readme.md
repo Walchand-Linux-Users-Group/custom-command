@@ -1,7 +1,7 @@
 # cleanop
 
 ## Description
-This command clean all cache and temporary files from a debian based distribution to free up space
+This command cleans all cache and temporary files from a debian based distribution to free up space
 
 ## Syntax
 ```bash
