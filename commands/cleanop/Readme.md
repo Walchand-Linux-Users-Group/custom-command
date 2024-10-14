@@ -9,7 +9,7 @@ sudo bash cleanop # Installs cleanop
 ```
 
 ```bash
-cleanop
+sudo cleanop
 ```
 ## Features
 1] Removes files and directories that are no longer needed or are outdated<br/>
