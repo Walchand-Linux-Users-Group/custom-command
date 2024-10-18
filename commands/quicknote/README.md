@@ -18,3 +18,4 @@ chmod +x quicknote.sh
 2] Appends the note to ~/quicknotes.txt in your home directory.<br/>
 3] Provides feedback if no note is supplied.
 <br/>
+
