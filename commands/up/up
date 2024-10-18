@@ -1,0 +1,33 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run with sudo"
+    exit 1
+fi
+
+up_function='
+up() {
+    local take_argument=$1
+
+    if ! [[ "$take_argument" =~ ^[0-9]+$ ]]; then
+        echo "Error: Please provide a valid number"
+        return 1
+    fi
+
+    while [[ $take_argument -ne 0 ]]
+    do 
+        if [[ "$(pwd)" == "/" ]]; then
+            break
+        fi
+        cd ..
+        (( take_argument-- ))
+    done
+}
+'
+if ! grep -q "up()" ~/.bashrc; then
+    echo "$up_function" >> ~/.bashrc
+    source ~/.bashrc
+    echo "Now you can go up! Until /"
+else
+    echo "You're already going up!"
+fi
