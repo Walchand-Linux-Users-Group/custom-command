@@ -19,4 +19,3 @@ chmod +x quicknote.sh
 3] Provides feedback if no note is supplied.
 <br/>
 
-`Note` : To make this command global add it to your `usr/bin` directory.
