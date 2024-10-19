@@ -34,8 +34,6 @@ if ! command -v $command_name &> /dev/null; then
 
   
   cp "$script_path" /usr/local/bin/$command_name
-
-  
   chmod +x /usr/local/bin/$command_name
 
   echo "$command_name command installed successfully! You can now use it by typing '$command_name'."

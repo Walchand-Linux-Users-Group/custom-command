@@ -27,13 +27,13 @@ add_cron_job() {
 
     cron_schedule="$minute $hour $day $month $day_of_week"
     
-    # Attempt to copy the script
+    
     echo "Attempting to copy the script to /usr/local/bin/$command_name..."
     if cp "$script_path" "/usr/local/bin/$command_name"; then
       chmod +x "/usr/local/bin/$command_name"
       echo "Script copied to /usr/local/bin successfully."
       
-      # Add the cron job
+    
       (crontab -l; echo "$cron_schedule $script_path") | crontab -
       echo "New cron job added: $cron_schedule $script_path"
     else
@@ -49,7 +49,7 @@ add_cron_job() {
 delete_cron_job() {
   if crontab -l | grep -q "$script_path"; then
     echo "Deleting the existing cron job..."
-    # Remove the specific cron job
+    
     (crontab -l | grep -v "$script_path") | crontab -
     echo "Cron job deleted."
   else
