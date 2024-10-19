@@ -18,6 +18,7 @@ if ! grep -q "up()" ~/.bashrc; then
     echo '}' >> ~/.bashrc
     source ~/.bashrc
     echo "Now you can go up! Until /"
+    echo "Make sure to kill the terminal!"
 else
     echo "You are already going up!"
 fi
