@@ -22,6 +22,9 @@ bash ./commands/your_directory/sample_command.sh
 
 We welcome contributions! Please check the [`CONTRIBUTING.md`](https://github.com/Walchand-Linux-Users-Group/custom-command/blob/master/CONTRIBUTING.md) file for guidelines on how to create and submit custom commands.
 
+
+`Note` : To make any command global add it to your `usr/bin` directory.
+
 ---
 
 <div align="center"><h3>Community | Knowledge | Share</h3></div>

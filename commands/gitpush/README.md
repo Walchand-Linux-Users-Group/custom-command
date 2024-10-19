@@ -21,4 +21,8 @@ chmod +x gitpush.sh
 4] Provides feedback if no commit message is supplied.
 <br/>
 
-
+`Note`:
+#### When It Works:
+- The script will work if you are running it in a directory that is already initialized as a Git repository 
+- A remote repository is configured (`git remote -v`).
+- You have proper authentication configured (e.g SSH keys or cached credentials).
