@@ -22,3 +22,4 @@ To make the script executable, use the following command:
 
 ```bash
 chmod +x get-ip.sh
+./get-ip.sh "Your description here"
