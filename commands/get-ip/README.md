@@ -6,7 +6,7 @@ The `get_ip.sh` script allows you to fetch your public IP address using `curl` a
 
 ## Syntax
 ``` bash 
-    ./get-ip.sh "Your description here"
+    bash get-ip.sh "Your description here"
 ```
 ## Features
 
