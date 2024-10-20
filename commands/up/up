@@ -1,0 +1,24 @@
+#!/bin/bash
+
+if ! grep -q "up()" ~/.bashrc; then
+    echo 'up() {' >> ~/.bashrc
+    echo '    local take_argument=$1' >> ~/.bashrc
+    echo '    if ! [[ "$take_argument" =~ ^[0-9]+$ ]]; then' >> ~/.bashrc
+    echo '        echo "Error: Please provide a valid number"' >> ~/.bashrc
+    echo '        return 1' >> ~/.bashrc
+    echo '    fi' >> ~/.bashrc
+    echo '    while [[ $take_argument -ne 0 ]]' >> ~/.bashrc
+    echo '    do' >> ~/.bashrc
+    echo '        if [[ "$(pwd)" == "/" ]]; then' >> ~/.bashrc
+    echo '            break' >> ~/.bashrc
+    echo '        fi' >> ~/.bashrc
+    echo '        cd ..' >> ~/.bashrc
+    echo '        (( take_argument-- ))' >> ~/.bashrc
+    echo '    done' >> ~/.bashrc
+    echo '}' >> ~/.bashrc
+    source ~/.bashrc
+    echo "Now you can go up! Until /"
+    echo "Make sure to kill the terminal!"
+else
+    echo "You are already going up!"
+fi

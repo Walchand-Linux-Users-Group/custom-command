@@ -1,0 +1,47 @@
+#!/bin/bash
+
+if ! grep -q "extract()" ~/.bashrc; then
+    echo 'extract() {' >> ~/.bashrc
+    echo '    if [ -f "$1" ]; then' >> ~/.bashrc
+    echo '        case "$1" in' >> ~/.bashrc
+    echo '            *.tar.bz2) tar xjf "$1" ;;' >> ~/.bashrc
+    echo '            *.tar.gz) tar xzf "$1" ;;' >> ~/.bashrc
+    echo '            *.bz2) bunzip2 "$1" ;;' >> ~/.bashrc
+    echo '            *.rar) unrar x "$1" ;;' >> ~/.bashrc
+    echo '            *.gz) gunzip "$1" ;;' >> ~/.bashrc
+    echo '            *.tar) tar xf "$1" ;;' >> ~/.bashrc
+    echo '            *.tbz2) tar xjf "$1" ;;' >> ~/.bashrc
+    echo '            *.tgz) tar xzf "$1" ;;' >> ~/.bashrc
+    echo '            *.zip) unzip "$1" ;;' >> ~/.bashrc
+    echo '            *.Z) uncompress "$1" ;;' >> ~/.bashrc
+    echo '            *.7z) 7z x "$1" ;;' >> ~/.bashrc
+    echo '            *) echo "$1 cannot be extracted via extract()" ;;' >> ~/.bashrc
+    echo '        esac' >> ~/.bashrc
+    echo '    else' >> ~/.bashrc
+    echo '        echo "$1 is not a valid file"' >> ~/.bashrc
+    echo '    fi' >> ~/.bashrc
+    echo '}' >> ~/.bashrc
+fi
+
+if ! grep -q "compress()" ~/.bashrc; then
+    echo 'compress() {' >> ~/.bashrc
+    echo '    case "$2" in' >> ~/.bashrc
+    echo '        tar.bz2) tar cjf "$1.tar.bz2" "$1" ;;' >> ~/.bashrc
+    echo '        tar.gz) tar czf "$1.tar.gz" "$1" ;;' >> ~/.bashrc
+    echo '        bz2) bzip2 "$1" ;;' >> ~/.bashrc
+    echo '        rar) rar a "$1.rar" "$1" ;;' >> ~/.bashrc
+    echo '        gz) gzip "$1" ;;' >> ~/.bashrc
+    echo '        tar) tar cf "$1.tar" "$1" ;;' >> ~/.bashrc
+    echo '        tbz2) tar cjf "$1.tbz2" "$1" ;;' >> ~/.bashrc
+    echo '        tgz) tar czf "$1.tgz" "$1" ;;' >> ~/.bashrc
+    echo '        zip) zip -r "$1.zip" "$1" ;;' >> ~/.bashrc
+    echo '        7z) 7z a "$1.7z" "$1" ;;' >> ~/.bashrc
+    echo '        *) echo "Unsupported compression type: $2" ;;' >> ~/.bashrc
+    echo '    esac' >> ~/.bashrc
+    echo '}' >> ~/.bashrc
+    source ~/.bashrc
+    echo "Extract and compress functions added to .bashrc!"
+    echo "Make sure to kill the terminal!"
+else
+    echo "Extract and Compress function already exists in .bashrc!"
+fi
