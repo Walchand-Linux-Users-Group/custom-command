@@ -6,7 +6,7 @@ The `get_ip.sh` script allows you to fetch your public IP address using `curl` a
 
 ## Syntax
 ``` bash 
-    curl ifconfig.me "Your description here"
+    ./get-ip.sh "Your description here"
 ```
 ## Features
 
@@ -21,4 +21,4 @@ The `get_ip.sh` script allows you to fetch your public IP address using `curl` a
 To make the script executable, use the following command:
 
 ```bash
-chmod +x get_ip.sh
+chmod +x get-ip.sh
