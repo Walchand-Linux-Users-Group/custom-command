@@ -1,7 +1,7 @@
 # dock-cleanup
 
 ## Description
-This command stops all running Docker containers, removes all containers and then force removes all Docker images.
+This command stops all running Docker containers, removes all containers and then force removes all Docker images. Navigate to your project directory and run the command to schedule git pulls for that entire git directory.
 
 ## Syntax
 ```bash

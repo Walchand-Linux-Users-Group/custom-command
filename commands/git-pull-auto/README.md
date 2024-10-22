@@ -1,7 +1,7 @@
 # git-pull-auto
 
 ## Description
-This command allows you to schedule your git pulls.
+This command allows you to schedule your git pulls. Navigate to your project root directory to run this command.
 
 ## Syntax
 ```bash
