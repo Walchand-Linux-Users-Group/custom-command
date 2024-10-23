@@ -13,3 +13,12 @@ Clean the package manager cache, free not-that-necessary system space
 
 ## How to install
 Run the installer.sh script to install the command
+
+```bash
+bash installer.sh
+```
+## To use the command
+Simply type in terminal:
+```bash
+cleancache
+```
