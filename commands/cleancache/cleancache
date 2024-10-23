@@ -1,0 +1,19 @@
+#!/bin/bash
+source /etc/os-release
+
+# <------- DEBUG STATEMENTS ------->
+# cat /etc/os-release
+
+if [[ "$ID" == *"arch"* ]] || [[ "$ID_LIKE" == *"arch"* ]]; then
+	sudo pacman -Scc 
+elif [[ "$ID" == *"debian"* ]] || [[ "$ID_LIKE" == *"debian"* ]] || [[ "$ID" == *"ubuntu"* ]]; then
+	sudo apt clean
+elif [[ "$ID" == *"fedora"* ]] || [[ "$ID_LIKE" == *"fedora"* ]]; then
+	sudo dnf clean all
+elif [[ "$ID" == *"suse"* ]] || [[ "$ID_LIKE" == *"suse"* ]]; then
+	sudo zypper clean
+elif [[ "$ID" == *"gentoo"* ]] || [[ "$ID_LIKE" == *"gentoo"* ]]; then
+	sudo emerge --clean
+elif [[ "$ID" == *"slackware"* ]] || [[ "$ID_LIKE" == *"slackware"* ]]; then
+	sudo slackpkg clean 
+fi
