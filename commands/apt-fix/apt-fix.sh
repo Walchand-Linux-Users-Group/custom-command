@@ -1,35 +1,22 @@
 #!/bin/bash
 
 command_name="apt-fix"
+script_path=$(realpath "$0")
 
-fix_apt_function() {
-    echo "Fixing broken installs and managing locks..."
-    
-    sudo rm /var/lib/dpkg/lock-frontend
-    sudo rm /var/cache/apt/archives/lock
-    sudo dpkg --configure -a
-    sudo apt update
-    sudo apt install -f
-    sudo apt autoremove
-    sudo apt autoclean
 
-    echo "System fixed successfully!"
-}
-
-setup_command() {
-    if [ "$EUID" -ne 0 ]; then
-        echo "Please run as root or use sudo to set up the command"
-        exit 1
-    fi
-
-    script_path=$(realpath "$0")
-    cp "$script_path" /usr/local/bin/$command_name
-    chmod +x /usr/local/bin/$command_name
-    echo "Custom command 'apt-fix' is now available."
-}
-
-if [ "$EUID" -eq 0 ]; then
-    fix_apt_function
-else
-    setup_command
+if [ ! -f "/usr/local/bin/$command_name" ]; then
+  cp "$script_path" /usr/local/bin/$command_name
+  chmod +x /usr/local/bin/$command_name
+  echo "Copied and made $command_name executable at /usr/local/bin"
 fi
+
+
+echo "Running apt-fix to manage locks and fix broken installs..."
+sudo rm /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock
+sudo rm /var/cache/apt/archives/lock
+sudo dpkg --configure -a
+sudo apt-get install -f
+sudo apt-get update
+
+
+echo "$command_name executed successfully."
