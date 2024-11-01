@@ -17,6 +17,7 @@ Each script in the commands/ directory can be used as a custom command. To use a
 ```
 bash ./commands/your_directory/sample_command.sh
 ```
+You can also choose to add this directory to the $PATH variable. 
 
 ## 🏗️ Contributing
 
