@@ -1,58 +1,32 @@
-# dock-volume-cleanup
+# 🧹 dock-volume-cleanup
 
-## Description
+A handy script to clean up unused Docker volumes.
 
-This script, `dock-volume-cleanup`, helps you manage Docker volumes by:
+---
 
-1. **Cleaning up dangling volumes:** Removes unused volumes (not associated with any containers).
-2. **Listing remaining volumes:** Provides an overview of all remaining Docker volumes after cleanup.
-3. **(Optional) Force removal:** If needed, you can manually remove remaining volumes after reviewing the list. (Instructions included below)
+## 🔧 Features
 
-**Important Note:** This script **does not** stop or remove Docker containers or images. It focuses solely on Docker volumes.
+- 🗑️ Removes **dangling volumes** (default behavior)
+- 💣 Optional: Use `--force-all` to remove **all unused volumes**, even named ones
+- 📋 Lists remaining volumes after cleanup
+- ✅ Safe: does **not** touch containers or images
 
-## Prerequisites
+---
 
-* Docker installed and running on your system.
+## 📦 Requirements
 
-## Usage
+- Docker must be **installed** and **running**
 
-1.  **Save the script:**
-    - Create a new file named `dock-volume-cleanup.sh`.
-    - Paste the following script content into the file:
+---
 
-```bash
-#!/bin/bash
+## 🚀 Installation
 
-# Check for root privileges (recommended)
-if [ "<span class="math-inline">EUID" \-ne 0 \]; then
-echo "This script is recommended to run with root privileges for optimal cleanup\."
-echo "Consider using 'sudo dock\-volume\-cleanup'\."
-fi
-\#\# Cleanup function
-cleanup\_volumes\(\) \{
-echo "Cleaning up dangling Docker volumes\.\.\."
-docker volume prune \-f
-echo "Listing remaining Docker volumes\.\.\."
-docker volume ls
-echo "Docker volume cleanup complete\!"
-\}
-\# Installation \(optional\)
-if \! command \-v dock\-volume\-cleanup &\> /dev/null; then
-echo "Installing dock\-volume\-cleanup command\.\.\."
-script\_path\=</span>(realpath "$0")
+1. Save the script as `docker-volume-cleanup.sh`
+2. Make it executable:
+   ```bash
+   chmod +x docker-volume-cleanup.sh
+    ```
+   ![Screenshot from 2025-06-18 08-32-10](https://github.com/user-attachments/assets/fa33b51c-85f6-4ac8-aca2-3485b592f989)
 
-  # Consider using a dedicated directory for user-installed scripts (e.g., ~/.local/bin)
-  # instead of /usr/local/bin (requires root privileges).
-  install_path=~/.local/bin/dock-volume-cleanup
 
-  cp "$script_path" "$install_path"
-
-  chmod +x "$install_ path"
-
-  echo "dock-volume-cleanup command installed successfully! You can now use it by typing 'dock-volume-cleanup'."
-
-  exit 0
-else
-  echo "dock-volume-cleanup is already installed, running cleanup..."
-  cleanup_volumes
-fi
+   ![image](https://github.com/user-attachments/assets/3af6a851-0639-4c92-b76e-b8e305562a50)
