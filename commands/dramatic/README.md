@@ -35,7 +35,9 @@ dramatic ls -la
 dramatic bash -c "echo Hello; sleep 1; echo World"
 ```
 
+
 ## Notes
 - If `figlet` is installed, `dramatic` will use it to render the countdown and banner. Otherwise it falls back to simple ASCII art.
 - The script preserves and returns the exit code of the executed command.
+
 

@@ -13,6 +13,7 @@ install_self() {
   fi
 
 
+
   script_path=$(realpath "$0")
   echo "Installing $command_name to /usr/bin/ ..."
   cp "$script_path" /usr/bin/$command_name
@@ -20,6 +21,7 @@ install_self() {
   echo "Installed. You can now run commands like: dramatic ls -la"
   exit 0
 }
+
 
 print_big_number() {
   local n="$1"
