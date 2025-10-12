@@ -1,0 +1,437 @@
+#!/bin/bash
+# projinit - Project initialization with directory structure
+# Description: Creates standardized directory structure for different project types
+
+# Function to display usage
+usage() {
+    echo "Usage: projinit <project-type> <project-name>"
+    echo ""
+    echo "Create a standardized project directory structure"
+    echo ""
+    echo "Project Types:"
+    echo "  python      - Python project with virtual environment"
+    echo "  java        - Java project with Maven structure"
+    echo "  cpp         - C++ project with build directories"
+    echo "  web         - Web development project (HTML/CSS/JS)"
+    echo "  react       - React project structure"
+    echo "  node        - Node.js/Express project"
+    echo ""
+    echo "Options:"
+    echo "  -h, --help  Show this help message"
+    echo ""
+    echo "Examples:"
+    echo "  projinit python my-python-app"
+    echo "  projinit java my-java-app"
+    echo "  projinit web my-website"
+    exit 1
+}
+
+# Check for help flag
+if [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ -z "$1" ] || [ -z "$2" ]; then
+    usage
+fi
+
+PROJECT_TYPE=$1
+PROJECT_NAME=$2
+
+# Check if directory already exists
+if [ -d "$PROJECT_NAME" ]; then
+    echo "❌ Error: Directory '$PROJECT_NAME' already exists"
+    exit 1
+fi
+
+echo "🚀 Creating $PROJECT_TYPE project: $PROJECT_NAME"
+echo ""
+
+case $PROJECT_TYPE in
+    python)
+        mkdir -p "$PROJECT_NAME"/{src,tests,docs}
+        cd "$PROJECT_NAME"
+
+        # Create files
+        touch README.md .gitignore requirements.txt
+        touch src/__init__.py src/main.py
+        touch tests/__init__.py tests/test_main.py
+
+        # .gitignore content
+        cat > .gitignore << 'EOF'
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+*.egg-info/
+dist/
+build/
+EOF
+
+        # README content
+        cat > README.md << EOF
+# $PROJECT_NAME
+
+## Description
+A Python project created with WLUG projinit
+
+## Installation
+\`\`\`bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\\Scripts\\activate
+pip install -r requirements.txt
+\`\`\`
+
+## Usage
+\`\`\`bash
+python src/main.py
+\`\`\`
+
+## Testing
+\`\`\`bash
+pytest tests/
+\`\`\`
+EOF
+
+        # Basic main.py
+        cat > src/main.py << 'EOF'
+def main():
+    print("Hello from your Python project!")
+
+if __name__ == "__main__":
+    main()
+EOF
+
+        echo "✅ Python project created"
+        echo "   📁 Structure: src/, tests/, docs/"
+        echo "   📄 Files: README.md, .gitignore, requirements.txt"
+        ;;
+
+    java)
+        mkdir -p "$PROJECT_NAME"/src/{main,test}/{java,resources}
+        cd "$PROJECT_NAME"
+
+        touch README.md .gitignore
+
+        cat > .gitignore << 'EOF'
+*.class
+*.jar
+*.war
+*.ear
+target/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+EOF
+
+        cat > README.md << EOF
+# $PROJECT_NAME
+
+## Description
+A Java project created with WLUG projinit
+
+## Build
+\`\`\`bash
+javac -d bin src/main/java/**/*.java
+\`\`\`
+
+## Run
+\`\`\`bash
+java -cp bin Main
+\`\`\`
+EOF
+
+        cat > pom.xml << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.wlug</groupId>
+    <artifactId>$PROJECT_NAME</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+</project>
+EOF
+
+        echo "✅ Java project created"
+        echo "   📁 Structure: src/main/java, src/test/java"
+        echo "   📄 Files: README.md, .gitignore, pom.xml"
+        ;;
+
+    cpp)
+        mkdir -p "$PROJECT_NAME"/{src,include,build,tests,docs}
+        cd "$PROJECT_NAME"
+
+        touch README.md .gitignore
+        touch src/main.cpp include/main.h
+
+        cat > .gitignore << 'EOF'
+*.o
+*.out
+*.exe
+build/
+*.a
+*.so
+.vscode/
+*.swp
+EOF
+
+        cat > README.md << EOF
+# $PROJECT_NAME
+
+## Description
+A C++ project created with WLUG projinit
+
+## Build
+\`\`\`bash
+g++ -I include -o build/main src/main.cpp
+\`\`\`
+
+## Run
+\`\`\`bash
+./build/main
+\`\`\`
+EOF
+
+        cat > src/main.cpp << 'EOF'
+#include <iostream>
+
+int main() {
+    std::cout << "Hello from your C++ project!" << std::endl;
+    return 0;
+}
+EOF
+
+        cat > Makefile << 'EOF'
+CXX = g++
+CXXFLAGS = -Wall -Iinclude
+TARGET = build/main
+SRC = src/main.cpp
+
+all: $(TARGET)
+
+$(TARGET): $(SRC)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+clean:
+	rm -f $(TARGET)
+EOF
+
+        echo "✅ C++ project created"
+        echo "   📁 Structure: src/, include/, build/, tests/"
+        echo "   📄 Files: README.md, .gitignore, Makefile"
+        ;;
+
+    web)
+        mkdir -p "$PROJECT_NAME"/{css,js,images,assets}
+        cd "$PROJECT_NAME"
+
+        touch README.md .gitignore
+        touch index.html css/style.css js/script.js
+
+        cat > .gitignore << 'EOF'
+.DS_Store
+node_modules/
+*.log
+EOF
+
+        cat > README.md << EOF
+# $PROJECT_NAME
+
+## Description
+A web project created with WLUG projinit
+
+## Usage
+Open index.html in your browser
+EOF
+
+        cat > index.html << 'EOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Project</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Hello from your Web Project!</h1>
+    <script src="js/script.js"></script>
+</body>
+</html>
+EOF
+
+        cat > css/style.css << 'EOF'
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+EOF
+
+        cat > js/script.js << 'EOF'
+console.log("Web project initialized!");
+EOF
+
+        echo "✅ Web project created"
+        echo "   📁 Structure: css/, js/, images/, assets/"
+        echo "   📄 Files: index.html, style.css, script.js"
+        ;;
+
+    react)
+        mkdir -p "$PROJECT_NAME"/{src,public}
+        cd "$PROJECT_NAME"
+
+        touch README.md .gitignore
+
+        cat > .gitignore << 'EOF'
+node_modules/
+build/
+.env
+.DS_Store
+npm-debug.log
+EOF
+
+        cat > README.md << EOF
+# $PROJECT_NAME
+
+## Description
+A React project created with WLUG projinit
+
+## Setup
+\`\`\`bash
+npm install
+\`\`\`
+
+## Run
+\`\`\`bash
+npm start
+\`\`\`
+EOF
+
+        cat > package.json << EOF
+{
+  "name": "$PROJECT_NAME",
+  "version": "1.0.0",
+  "description": "React project",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
+  }
+}
+EOF
+
+        mkdir -p src public
+        touch public/index.html src/App.js src/index.js
+
+        echo "✅ React project created"
+        echo "   📁 Structure: src/, public/"
+        echo "   📄 Files: package.json, README.md"
+        echo "   ⚠️  Run 'npm install' to install dependencies"
+        ;;
+
+    node)
+        mkdir -p "$PROJECT_NAME"/{src,tests,config}
+        cd "$PROJECT_NAME"
+
+        touch README.md .gitignore
+
+        cat > .gitignore << 'EOF'
+node_modules/
+.env
+*.log
+.DS_Store
+dist/
+coverage/
+EOF
+
+        cat > README.md << EOF
+# $PROJECT_NAME
+
+## Description
+A Node.js project created with WLUG projinit
+
+## Setup
+\`\`\`bash
+npm install
+\`\`\`
+
+## Run
+\`\`\`bash
+npm start
+\`\`\`
+EOF
+
+        cat > package.json << EOF
+{
+  "name": "$PROJECT_NAME",
+  "version": "1.0.0",
+  "description": "Node.js project",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
+EOF
+
+        cat > src/index.js << 'EOF'
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+    res.json({ message: 'Hello from your Node.js project!' });
+});
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+EOF
+
+        echo "✅ Node.js project created"
+        echo "   📁 Structure: src/, tests/, config/"
+        echo "   📄 Files: package.json, README.md"
+        echo "   ⚠️  Run 'npm install' to install dependencies"
+        ;;
+
+    *)
+        echo "❌ Error: Unknown project type '$PROJECT_TYPE'"
+        usage
+        ;;
+esac
+
+echo ""
+echo "🎉 Project '$PROJECT_NAME' created successfully!"
+echo "📍 Location: $(pwd)"
+echo ""
+echo "Next steps:"
+echo "  cd $PROJECT_NAME"
+echo "  git init"
+echo "  git add ."
+echo "  git commit -m 'Initial commit'"
