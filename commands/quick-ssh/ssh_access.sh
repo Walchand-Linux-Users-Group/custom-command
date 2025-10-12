@@ -15,7 +15,7 @@ if ! systemctl list-units --type=service | grep -q "ssh.service"; then
 	echo "enabling openssh server"
 	sudo apt install -y openssh-server
 	sudo systemctl enable ssh
-	sudo apt install -y tree
+	#sudo apt install -y tree
 fi
 
 echo "ssh is ready"
@@ -56,6 +56,7 @@ while true; do
 			# use filedir default if empty
 			filedir=${filedir:-/home/"$user"}
 
+			#used find command avoided tree(recursive nature may cause high resource usage)
 			echo "Searching for '$filename' in $filedir on $target ..."
 			ssh -p "$port" -o BatchMode=no "$target" \
 			  "if command -v find >/dev/null 2>&1; then
