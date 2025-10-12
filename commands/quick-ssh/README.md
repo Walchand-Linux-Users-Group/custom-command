@@ -28,6 +28,11 @@ Allows instant connection to any remote device by interactively providing its us
 **Feature 3: Remote File Search by Name**
 Executes a case-insensitive file search (`find` command) on the remote system based on a user-specified name and directory, displaying all matching paths and saving the results locally to `/tmp/ssh_search_results.txt`.
 
+### Supported Distros
+This command has been tested and works on:
+- **Ubuntu 22.04** and above
+- Debian-based systems (like **Linux Mint**)
+- Termux on Android (with **openssh package** (use command **pkg install openssh**))
 
 
 
