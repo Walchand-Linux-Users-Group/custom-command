@@ -1,5 +1,5 @@
-# Command name
-`git-compare-authors`
+# git-compare-authors
+
 
 # Description
 This command compares two Git authors in a repository by summarizing their contributions. It reports the number of commits, lines added, and lines deleted for each author and presents a clean tabular comparison to simplify contribution analysis.
