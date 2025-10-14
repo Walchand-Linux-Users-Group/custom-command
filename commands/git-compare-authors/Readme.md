@@ -1,17 +1,20 @@
-git-compare-authors
-Description
+# Command name
+`git-compare-authors`
 
-This command compares two Git authors based on their contributions in a repository. It shows the number of commits, lines added, and lines deleted for each author, making it easy to analyze and compare contributions.
+# Description
+This command compares two Git authors in a repository by summarizing their contributions. It reports the number of commits, lines added, and lines deleted for each author and presents a clean tabular comparison to simplify contribution analysis.
 
-Syntaxgit
+# Syntax
+```bash
 git compare-authors <author1> <author2>
+```
 
-Features
+# Features
+- **Commit count per author** — Displays the total number of commits made by each author.  
+- **Lines added & deleted** — Shows the number of lines added and the number of lines deleted by each author.  
+- **Tabular comparison** — Presents the results in a clean, easy-to-read table for quick side-by-side analysis.  
 
-Displays the total number of commits made by each author. <br/>
-
-Shows lines of code added and deleted by each author. <br/>
-
-Provides a clean tabular comparison for better readability. <br/>
-
-Helps in contribution analysis during code reviews or team retrospectives. <br/>
+# Use cases
+- Contribution analysis during code reviews  
+- Team retrospectives to understand relative activity  
+- Identifying heavy changers for mentoring or refactoring focus
