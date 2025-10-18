@@ -15,25 +15,20 @@ It creates a compressed archive of the container’s volumes, making it easy to 
 ### 1. Make the script executable
 ```bash
 chmod +x docker-backup.sh
-chmod +x dockerbackup-installer.sh
 ```
 
 ### 2. Install
 ```bash
-sudo ./dockerbackup-installer.sh
+sudo ./docker-backup.sh --install
 ```
 
 ## Usage
 ```bash
-./docker-backup.sh --container <container_name_or_id> [--output <directory>]
+docker-backup <container_name_or_id>
 ```
 
 Options:
-
-- --container : Name or ID of the container to back up. (required)
-
 - --output : Directory where the backup file will be saved. Defaults to the current directory.
-
 - --help : Displays usage information.
 
 ### Distributions
