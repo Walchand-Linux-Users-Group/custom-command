@@ -40,7 +40,7 @@ DNS_SERVERS=$(grep nameserver /etc/resolv.conf | awk '{print $2}' | tr '\n' ', '
 LOGGED_USERS=$(who)
 BATTERY_INFO=$(upower -i $(upower -e | grep BAT) 2>/dev/null | grep -E "state|percentage" || echo "No Battery Detected")
 
-#HTML Report Function
+#HTML Report function
 generate_html() {
   FILE="sysreport_$(date +%F_%H-%M-%S).html"
   cat <<EOF > "$FILE"

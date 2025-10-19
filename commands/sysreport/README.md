@@ -7,7 +7,7 @@ sysreport
 ## Description
 
 A Bash script that generates a detailed summary report of system resources, including CPU, memory, disk usage, uptime, top processes, and network details.
-It merges multiple Linux utilities like `lscpu`, `free`, `df`, `uptime`, `top`, and `ifconfig` (or `ip`) into one unified, easy-to-read report.
+It merges multiple Linux utilities like `lscpu`, `free`, `df`, `uptime`, `top`, and `ifconfig` (or `ip`) into one unified, easy to read report.
 
 This enhanced Bash script provides a comprehensive system report featuring:
 
