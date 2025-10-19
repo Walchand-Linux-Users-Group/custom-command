@@ -52,7 +52,6 @@ Execute the script with various flags to control the output:
 * **Network Insight:** Delivers detailed network topology information, including active interfaces, the default gateway, and configured DNS servers.
 * **Session Tracking:** Lists all currently active user sessions and logged-in users.
 * **Power Management Status:** Reports on battery charge level and status for portable devices and systems connected to a UPS.
-* **Automated Dependency Management:** Features built-in logic to check for and automatically install necessary command-line utilities (e.g., `lm-sensors`, `acpi`) if they are missing.
 * **Enhanced Readability:** Output is professionally formatted with clear section headers and consistent styling for easy analysis.
 * **HTML Report Generation:** Supports an option to export the full report into a web-friendly HTML file.
 * **Integration Ready:** Designed to be easily integrated into automated scripts, cron jobs, and centralized monitoring or auditing tools.
