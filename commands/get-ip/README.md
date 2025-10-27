@@ -2,19 +2,30 @@
 
 ## Description
 
-The `get_ip.sh` script allows you to fetch your public IP address using `curl` and logs it along with a timestamp and an optional description in a file named `iplog.txt` in your home directory. If `curl` is not installed, the script will automatically install it based on your operating system.
+A lightweight, feature-rich Bash command that logs the machine’s public IP (with timestamp), gathers optional geolocation/ISP and local network info, and provides search, history and statistics capabilities with automatic log rotation.
 
 ## Syntax
 ``` bash 
-    bash get-ip.sh "Your description here"
+# Basic log with description
+./get-ip.sh "Daily morning check"
+
+# Search logs
+./get-ip.sh --search "VPN"
+
+# Show history or stats
+./get-ip.sh --history
+./get-ip.sh --stats
+
+# Show recent entries or use custom file
+./get-ip.sh --recent 
+./get-ip.sh --file /var/log/my_iplog.txt "Custom location"
+
 ```
 ## Features
 
-1. Fetches your public IP using `curl ifconfig.me`.
-2. Logs the IP with a timestamp in the format `YYYY-MM-DD HH:MM:SS`.
-3. Appends the log entry to `~/iplog.txt` in your home directory.
-4. Accepts an optional description to log along with the IP.
-5. Installs `curl` automatically if it's not present, using the appropriate package manager (supports Debian/Ubuntu, Red Hat/CentOS, Arch Linux, and Alpine Linux).
+1. **Reliable public IP detection:** Tries multiple public IP services (fallbacks) and validates the result before logging.
+2. **Rich contextual logging:** Records timestamp, description, public IP, IP geolocation/ISP (when available) and local network details (interface, local IP, gateway, MAC).
+3. **Log management & analysis:** Automatic log rotation when the file exceeds a size threshold, plus built-in search, IP-change history and summary statistics.
 
 ## Installation
 
@@ -23,3 +34,5 @@ To make the script executable, use the following command:
 ```bash
 chmod +x get-ip.sh
 ./get-ip.sh "Your description here"
+
+```
