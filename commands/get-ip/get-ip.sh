@@ -275,7 +275,6 @@ main() {
             exit 1
             ;;
         *)
-            on
             if [ $# -eq 0 ]; then
                 print_error "Please provide a description or option"
                 show_usage
