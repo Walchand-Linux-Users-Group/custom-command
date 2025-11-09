@@ -1,4 +1,4 @@
-# lazy-commit.sh
+# docker-reset.sh
 
 **Smartly Reset Docker Projects or Entire Environment**
 
