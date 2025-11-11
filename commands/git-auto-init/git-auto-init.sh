@@ -67,7 +67,6 @@ install_gh() {
     echo "✅ GitHub CLI installed successfully!"
 }
 
-
 # ---- Check for GitHub CLI ----
 if ! command -v gh &>/dev/null; then
     install_gh
@@ -89,6 +88,14 @@ fi
 if [ -z "$REPO_NAME" ]; then
     REPO_NAME=$(basename "$(pwd)")
     echo "ℹ️  No repo name provided. Using current directory name: $REPO_NAME"
+fi
+
+# ---- Check if Repo Already Exists ----
+USERNAME=$(gh api user --jq .login)
+if gh repo view "$USERNAME/$REPO_NAME" &>/dev/null; then
+    echo "⚠️  Repository '$REPO_NAME' already exists on GitHub."
+    echo "🛑 Exiting to avoid overwriting or pushing to an existing repository."
+    exit 0
 fi
 
 # ---- Create README if Missing ----
@@ -116,17 +123,15 @@ fi
 
 # ---- Create GitHub Repository ----
 echo "🌐 Creating GitHub repository '$REPO_NAME' ($VISIBILITY)..."
-if gh repo view "$REPO_NAME" &>/dev/null; then
-    echo "⚠️  Repository '$REPO_NAME' already exists on GitHub."
+
+if [ -n "$DESCRIPTION" ]; then
+    echo "📝 Description: $DESCRIPTION"
+    gh repo create "$REPO_NAME" --"$VISIBILITY" --description "$DESCRIPTION" --source=. --remote=origin --push
 else
-    if [ -n "$DESCRIPTION" ]; then
-        echo "📝 Description: $DESCRIPTION"
-        gh repo create "$REPO_NAME" --"$VISIBILITY" --description "$DESCRIPTION" --source=. --remote=origin --push
-    else
-        gh repo create "$REPO_NAME" --"$VISIBILITY" --source=. --remote=origin --push
-    fi
-    echo "✅ GitHub repository created successfully."
+    gh repo create "$REPO_NAME" --"$VISIBILITY" --source=. --remote=origin --push
 fi
+
+echo "✅ GitHub repository created successfully."
 
 # ---- Set Branch Name ----
 git branch -M "$BRANCH"
@@ -137,13 +142,11 @@ if git remote -v | grep -q "origin"; then
     git push -u origin "$BRANCH"
 else
     echo "⚠️  Remote not found. Adding origin and pushing..."
-    USERNAME=$(gh api user --jq .login)
     git remote add origin "https://github.com/$USERNAME/$REPO_NAME.git"
     git push -u origin "$BRANCH"
 fi
 
 # ---- Final Summary ----
-USERNAME=$(gh api user --jq .login)
 echo ""
 echo "🚀 All done!"
 echo "📁 Local path: $(pwd)"
@@ -152,4 +155,3 @@ echo "🎯 Visibility: $VISIBILITY"
 if [ -n "$DESCRIPTION" ]; then
     echo "📝 Description: $DESCRIPTION"
 fi
-echo "✅ Happy Coding!"
