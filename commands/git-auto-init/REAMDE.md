@@ -67,10 +67,10 @@ one-time code in the terminal, like this:
 ## Usage
 
 **Auto Repository Naming (Default Behavior)**
-  If you run the script without providing a repository name, like this:
   ```bash
   git-auto-init
   ```
+  If you run the script without providing a repository name, like this
   then it automatically uses your current folder name as the GitHub repository name.
 
 **Public repo with description**
