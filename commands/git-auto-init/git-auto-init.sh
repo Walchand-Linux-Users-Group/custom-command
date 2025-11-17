@@ -106,7 +106,7 @@ fi
 
 # ---- Initialize Git Repository ----
 if [ ! -d ".git" ]; then
-    git init
+    git init -b "$BRANCH"
     echo "✅ Initialized new Git repository."
 else
     echo "⚠️  Git repository already exists."
@@ -132,9 +132,6 @@ else
 fi
 
 echo "✅ GitHub repository created successfully."
-
-# ---- Set Branch Name ----
-git branch -M "$BRANCH"
 
 # ---- Push to GitHub ----
 if git remote -v | grep -q "origin"; then
